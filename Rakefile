@@ -13,7 +13,7 @@ begin
       email:        %q{jens.wille@gmail.com},
       license:      %q{AGPL-3.0},
       homepage:     :blackwinter,
-      dependencies: %w[],
+      dependencies: %w[rb-gsl],
 
       required_ruby_version: '>= 1.9.3'
     }

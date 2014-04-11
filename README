@@ -8,7 +8,8 @@ This documentation refers to lsi4r version 0.0.1
 == DESCRIPTION
 
 LSI[https://en.wikipedia.org/wiki/Latent_semantic_indexing] processing
-for Ruby.
+for Ruby. Requires {GSL bindings}[https://blackwinter.github.io/rb-gsl/]
+for the heavy lifting.
 
 
 == LINKS
