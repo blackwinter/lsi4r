@@ -23,7 +23,7 @@ script:
   rake spec
 
 install:
-  gem install --development lsi4r
+  gem install --prerelease --development lsi4r
 
 before_install:
   - sudo apt-get update -qq
