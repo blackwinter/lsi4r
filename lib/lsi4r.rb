@@ -118,19 +118,25 @@ class Lsi4R
   end
 
   def related(key, num = 5)
-    if doc = self[key] and norm = doc.norm
-      temp = sort_by { |k, v| -norm * v.norm.col }
-      temp.map! { |k,| k }.delete(key)
-      temp[0, num]
-    end
+    each_vector(key) { |_, vec|
+      tmp, del = block_given? ? yield(vec) :
+        [sort_by { |_, v| -vec * v.norm.col }.map! { |k,| k }]
+
+      tmp.delete(del || key)
+
+      return tmp[0, num]
+    }
+
+    nil
   end
 
-  def related_score(key, num = 5)
-    if doc = self[key] and norm = doc.norm
-      temp = map { |k, v| [k, norm * v.norm.col] }.sort_by { |_, i| -i }
-      temp.delete(temp.assoc(key))
-      temp[0, num]
-    end
+  def related_score(key, num = 5, threshold = 0)
+    related(key, num) { |vec|
+      [tmp = map { |k, v|
+        score = vec * v.norm.col
+        [k, score] if score > threshold
+      }.compact.sort_by { |_, i| -i }, tmp.assoc(key)]
+    }
   end
 
   def build(options = {})
