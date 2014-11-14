@@ -80,6 +80,16 @@ class Lsi4R
     add(value.object_id, value)
   end
 
+  def each_vector(key = nil, norm = true)
+    return enum_for(:each_vector, key, norm) unless block_given?
+
+    (key ? [self[key]] : docs).each { |doc|
+      if doc && vec = norm ? doc.norm : doc.vector
+        yield doc, vec
+      end
+    }
+  end
+
   # min:: minimum value to consider
   # abs:: minimum absolute value to consider
   # nul:: exclude null values (true or Float)
@@ -90,18 +100,16 @@ class Lsi4R
     min, abs, nul, new = options.values_at(:min, :abs, :nul, :new)
     nul = DEFAULT_EPSILON if nul == true
 
-    list, norm = @invlist, options[:norm]
+    list = @invlist
 
-    (key ? [self[key]] : docs).each { |doc|
-      if doc && vec = norm ? doc.norm : doc.vector
-        vec.enum_for(:each).with_index { |v, i|
-          yield doc, list[i], v unless v.nan? ||
-                                       (min && v < min) ||
-                                       (abs && v.abs < abs) ||
-                                       (nul && v.abs < nul) ||
-                                       (new && doc.include?(i))
-        }
-      end
+    each_vector(key, options[:norm]) { |doc, vec|
+      vec.enum_for(:each).with_index { |v, i|
+        yield doc, list[i], v unless v.nan? ||
+                                     (min && v < min) ||
+                                     (abs && v.abs < abs) ||
+                                     (nul && v.abs < nul) ||
+                                     (new && doc.include?(i))
+      }
     }
   end
 
