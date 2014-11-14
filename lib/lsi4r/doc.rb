@@ -43,13 +43,17 @@ class Lsi4R
       def transform=(transform)
         method = :transformed_vector
 
-        case transform
-          when Proc          then define_method(method, &transform)
-          when UnboundMethod then define_method(method, transform)
-          else alias_method(method, "#{transform ||= :raw}_vector")
+        @transform = case transform ||= :raw
+          when Symbol, String
+            alias_method(method, "#{transform}_vector")
+            transform.to_sym
+          when Proc, UnboundMethod
+            define_method(method, transform)
+            transform.to_s
+          else
+            raise TypeError, "wrong argument type #{transform.class} " <<
+                             '(expected Symbol/String or Proc/UnboundMethod)'
         end
-
-        @transform = transform.to_sym
       end
 
     end

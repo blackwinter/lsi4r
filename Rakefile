@@ -1,4 +1,4 @@
-require File.expand_path(%q{../lib/lsi4r/version}, __FILE__)
+require_relative 'lib/lsi4r/version'
 
 begin
   require 'hen'

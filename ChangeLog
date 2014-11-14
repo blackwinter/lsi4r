@@ -2,6 +2,10 @@
 
 = Revision history for lsi4r
 
+== 0.0.2 [unreleased]
+
+* Fixed non-Symbol/String transforms.
+
 == 0.0.1 [2014-04-11]
 
 * First release (extracted from ruby-nuggets).
