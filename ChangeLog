@@ -4,7 +4,9 @@
 
 == 0.0.2 [unreleased]
 
-* Fixed non-Symbol/String transforms.
+* Fixed Lsi4R::Doc#transform= with regard to non-Symbol/String transforms.
+* Added Lsi4R#each_vector, extracted from Lsi4R#each_term.
+* Refactored Lsi4R#related and Lsi4R#related_score.
 
 == 0.0.1 [2014-04-11]
 
