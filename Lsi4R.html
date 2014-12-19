@@ -4,21 +4,18 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class Lsi4R - lsi4r Application documentation (v0.0.1)</title>
-
-<link href="./fonts.css" rel="stylesheet">
-<link href="./rdoc.css" rel="stylesheet">
+<title>class Lsi4R - lsi4r Application documentation (v0.0.2)</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
 </script>
 
 <script src="./js/jquery.js"></script>
-<script src="./js/navigation.js"></script>
-<script src="./js/search_index.js"></script>
-<script src="./js/search.js"></script>
-<script src="./js/searcher.js"></script>
 <script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
 
 
 <body id="top" role="document" class="class">
@@ -95,6 +92,10 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-c-build">::build</a>
+    
+    <li ><a href="#method-c-each_norm">::each_norm</a>
+    
     <li ><a href="#method-c-new">::new</a>
     
     <li ><a href="#method-i-3C-3C">#&lt;&lt;</a>
@@ -110,6 +111,8 @@
     <li ><a href="#method-i-each_norm">#each_norm</a>
     
     <li ><a href="#method-i-each_term">#each_term</a>
+    
+    <li ><a href="#method-i-each_vector">#each_vector</a>
     
     <li ><a href="#method-i-inspect">#inspect</a>
     
@@ -186,6 +189,74 @@
        <header>
          <h3>Public Class Methods</h3>
        </header>
+
+    
+      <div id="method-c-build" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">build</span><span
+            class="method-args">(items, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="build-source">
+            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 44</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">build</span>(<span class="ruby-identifier">items</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">lsi</span> = <span class="ruby-identifier">new</span>(<span class="ruby-identifier">items</span>)
+  <span class="ruby-identifier">lsi</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">lsi</span>.<span class="ruby-identifier">build</span>(<span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-each_norm" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each_norm</span><span
+            class="method-args">(items, options = {}, build_options = {}, &block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="each_norm-source">
+            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">each_norm</span>(<span class="ruby-identifier">items</span>, <span class="ruby-identifier">options</span> = {}, <span class="ruby-identifier">build_options</span> = {}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">lsi</span> = <span class="ruby-identifier">new</span>(<span class="ruby-identifier">items</span>)
+  <span class="ruby-identifier">lsi</span>.<span class="ruby-identifier">each_norm</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">lsi</span>.<span class="ruby-identifier">build</span>(<span class="ruby-identifier">build_options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
 
     
       <div id="method-c-new" class="method-detail ">
@@ -334,7 +405,7 @@
         
         <div class="method-heading">
           <span class="method-name">build</span><span
-            class="method-args">(items, options = {})</span>
+            class="method-args">(options = {})</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -349,10 +420,10 @@
 
           
           <div class="method-source-code" id="build-source">
-            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 44</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">build</span>(<span class="ruby-identifier">items</span>, <span class="ruby-identifier">options</span> = {})
-  <span class="ruby-identifier">lsi</span> = <span class="ruby-identifier">new</span>(<span class="ruby-identifier">items</span>)
-  <span class="ruby-identifier">lsi</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">lsi</span>.<span class="ruby-identifier">build</span>(<span class="ruby-identifier">options</span>)
+            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 142</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">build</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">build!</span>(<span class="ruby-identifier">docs</span>, <span class="ruby-ivar">@list</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>) <span class="ruby-operator">?</span>
+    <span class="ruby-identifier">options</span> <span class="ruby-operator">:</span> { <span class="ruby-identifier">cutoff</span><span class="ruby-operator">:</span> <span class="ruby-identifier">options</span> }) <span class="ruby-keyword">if</span> <span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -368,7 +439,7 @@
         
         <div class="method-heading">
           <span class="method-name">each_norm</span><span
-            class="method-args">(items, options = {}, build_options = {}, &block)</span>
+            class="method-args">(key = nil, options = {}, &block)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -383,10 +454,9 @@
 
           
           <div class="method-source-code" id="each_norm-source">
-            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 49</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">each_norm</span>(<span class="ruby-identifier">items</span>, <span class="ruby-identifier">options</span> = {}, <span class="ruby-identifier">build_options</span> = {}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
-  <span class="ruby-identifier">lsi</span> = <span class="ruby-identifier">new</span>(<span class="ruby-identifier">items</span>)
-  <span class="ruby-identifier">lsi</span>.<span class="ruby-identifier">each_norm</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">lsi</span>.<span class="ruby-identifier">build</span>(<span class="ruby-identifier">build_options</span>)
+            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 116</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">each_norm</span>(<span class="ruby-identifier">key</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span> = {}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">each_term</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">norm</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>), <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -429,24 +499,61 @@
 
           
           <div class="method-source-code" id="each_term-source">
-            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 87</span>
+            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 97</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">each_term</span>(<span class="ruby-identifier">key</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span> = {})
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">enum_for</span>(<span class="ruby-value">:each_term</span>, <span class="ruby-identifier">key</span>, <span class="ruby-identifier">options</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">block_given?</span>
 
   <span class="ruby-identifier">min</span>, <span class="ruby-identifier">abs</span>, <span class="ruby-identifier">nul</span>, <span class="ruby-identifier">new</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-value">:min</span>, <span class="ruby-value">:abs</span>, <span class="ruby-value">:nul</span>, <span class="ruby-value">:new</span>)
   <span class="ruby-identifier">nul</span> = <span class="ruby-constant">DEFAULT_EPSILON</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">nul</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
 
-  <span class="ruby-identifier">list</span>, <span class="ruby-identifier">norm</span> = <span class="ruby-ivar">@invlist</span>, <span class="ruby-identifier">options</span>[<span class="ruby-value">:norm</span>]
+  <span class="ruby-identifier">list</span> = <span class="ruby-ivar">@invlist</span>
+
+  <span class="ruby-identifier">each_vector</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">options</span>[<span class="ruby-value">:norm</span>]) { <span class="ruby-operator">|</span><span class="ruby-identifier">doc</span>, <span class="ruby-identifier">vec</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">vec</span>.<span class="ruby-identifier">enum_for</span>(<span class="ruby-value">:each</span>).<span class="ruby-identifier">with_index</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">v</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">yield</span> <span class="ruby-identifier">doc</span>, <span class="ruby-identifier">list</span>[<span class="ruby-identifier">i</span>], <span class="ruby-identifier">v</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">nan?</span> <span class="ruby-operator">||</span>
+                                   (<span class="ruby-identifier">min</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">v</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">min</span>) <span class="ruby-operator">||</span>
+                                   (<span class="ruby-identifier">abs</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">abs</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">abs</span>) <span class="ruby-operator">||</span>
+                                   (<span class="ruby-identifier">nul</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">abs</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">nul</span>) <span class="ruby-operator">||</span>
+                                   (<span class="ruby-identifier">new</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">i</span>))
+    }
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-each_vector" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each_vector</span><span
+            class="method-args">(key = nil, norm = true) { |doc, vec| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="each_vector-source">
+            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 83</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">each_vector</span>(<span class="ruby-identifier">key</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">norm</span> = <span class="ruby-keyword">true</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">enum_for</span>(<span class="ruby-value">:each_vector</span>, <span class="ruby-identifier">key</span>, <span class="ruby-identifier">norm</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">block_given?</span>
 
   (<span class="ruby-identifier">key</span> <span class="ruby-operator">?</span> [<span class="ruby-keyword">self</span>[<span class="ruby-identifier">key</span>]] <span class="ruby-operator">:</span> <span class="ruby-identifier">docs</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">doc</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">doc</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">vec</span> = <span class="ruby-identifier">norm</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">norm</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">vector</span>
-      <span class="ruby-identifier">vec</span>.<span class="ruby-identifier">enum_for</span>(<span class="ruby-value">:each</span>).<span class="ruby-identifier">with_index</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">v</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-        <span class="ruby-keyword">yield</span> <span class="ruby-identifier">doc</span>, <span class="ruby-identifier">list</span>[<span class="ruby-identifier">i</span>], <span class="ruby-identifier">v</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">nan?</span> <span class="ruby-operator">||</span>
-                                     (<span class="ruby-identifier">min</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">v</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">min</span>) <span class="ruby-operator">||</span>
-                                     (<span class="ruby-identifier">abs</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">abs</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">abs</span>) <span class="ruby-operator">||</span>
-                                     (<span class="ruby-identifier">nul</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">abs</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">nul</span>) <span class="ruby-operator">||</span>
-                                     (<span class="ruby-identifier">new</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">i</span>))
-      }
+      <span class="ruby-keyword">yield</span> <span class="ruby-identifier">doc</span>, <span class="ruby-identifier">vec</span>
     <span class="ruby-keyword">end</span>
   }
 <span class="ruby-keyword">end</span></pre>
@@ -479,7 +586,7 @@
 
           
           <div class="method-source-code" id="inspect-source">
-            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 138</span>
+            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 152</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">inspect</span>
   <span class="ruby-string">&#39;%s@%d/%d&#39;</span> <span class="ruby-operator">%</span> [<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>, <span class="ruby-identifier">size</span>, <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">size</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -497,7 +604,7 @@
         
         <div class="method-heading">
           <span class="method-name">related</span><span
-            class="method-args">(key, num = 5)</span>
+            class="method-args">(key, num = 5) { |vec| ... }</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -512,13 +619,18 @@
 
           
           <div class="method-source-code" id="related-source">
-            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 112</span>
+            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 120</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">related</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">num</span> = <span class="ruby-value">5</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">doc</span> = <span class="ruby-keyword">self</span>[<span class="ruby-identifier">key</span>] <span class="ruby-keyword">and</span> <span class="ruby-identifier">norm</span> = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">norm</span>
-    <span class="ruby-identifier">temp</span> = <span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-operator">-</span><span class="ruby-identifier">norm</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">norm</span>.<span class="ruby-identifier">col</span> }
-    <span class="ruby-identifier">temp</span>.<span class="ruby-identifier">map!</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-operator">|</span> <span class="ruby-identifier">k</span> }.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">key</span>)
-    <span class="ruby-identifier">temp</span>[<span class="ruby-value">0</span>, <span class="ruby-identifier">num</span>]
-  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">each_vector</span>(<span class="ruby-identifier">key</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">vec</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">tmp</span>, <span class="ruby-identifier">del</span> = <span class="ruby-identifier">block_given?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">vec</span>) <span class="ruby-operator">:</span>
+      [<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-operator">-</span><span class="ruby-identifier">vec</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">norm</span>.<span class="ruby-identifier">col</span> }.<span class="ruby-identifier">map!</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-operator">|</span> <span class="ruby-identifier">k</span> }]
+
+    <span class="ruby-identifier">tmp</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">del</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">key</span>)
+
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">tmp</span>[<span class="ruby-value">0</span>, <span class="ruby-identifier">num</span>]
+  }
+
+  <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -534,7 +646,7 @@
         
         <div class="method-heading">
           <span class="method-name">related_score</span><span
-            class="method-args">(key, num = 5)</span>
+            class="method-args">(key, num = 5, threshold = 0)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -549,13 +661,14 @@
 
           
           <div class="method-source-code" id="related_score-source">
-            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 120</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">related_score</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">num</span> = <span class="ruby-value">5</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">doc</span> = <span class="ruby-keyword">self</span>[<span class="ruby-identifier">key</span>] <span class="ruby-keyword">and</span> <span class="ruby-identifier">norm</span> = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">norm</span>
-    <span class="ruby-identifier">temp</span> = <span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">k</span>, <span class="ruby-identifier">norm</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">norm</span>.<span class="ruby-identifier">col</span>] }.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-operator">-</span><span class="ruby-identifier">i</span> }
-    <span class="ruby-identifier">temp</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">temp</span>.<span class="ruby-identifier">assoc</span>(<span class="ruby-identifier">key</span>))
-    <span class="ruby-identifier">temp</span>[<span class="ruby-value">0</span>, <span class="ruby-identifier">num</span>]
-  <span class="ruby-keyword">end</span>
+            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 133</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">related_score</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">num</span> = <span class="ruby-value">5</span>, <span class="ruby-identifier">threshold</span> = <span class="ruby-value">0</span>)
+  <span class="ruby-identifier">related</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">num</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">vec</span><span class="ruby-operator">|</span>
+    [<span class="ruby-identifier">tmp</span> = <span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">score</span> = <span class="ruby-identifier">vec</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">norm</span>.<span class="ruby-identifier">col</span>
+      [<span class="ruby-identifier">k</span>, <span class="ruby-identifier">score</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">score</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">threshold</span>
+    }.<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-operator">-</span><span class="ruby-identifier">i</span> }, <span class="ruby-identifier">tmp</span>.<span class="ruby-identifier">assoc</span>(<span class="ruby-identifier">key</span>)]
+  }
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -586,7 +699,7 @@
 
           
           <div class="method-source-code" id="reset-source">
-            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 133</span>
+            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 147</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reset</span>
   <span class="ruby-ivar">@hash</span>, <span class="ruby-ivar">@list</span>, <span class="ruby-ivar">@freq</span>, <span class="ruby-ivar">@invlist</span> =
     {}, <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">h</span>.<span class="ruby-identifier">size</span> }, <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>), {}
@@ -620,7 +733,7 @@
 
           
           <div class="method-source-code" id="to_a-source">
-            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 142</span>
+            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 156</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_a</span>(<span class="ruby-identifier">norm</span> = <span class="ruby-keyword">true</span>)
   (<span class="ruby-identifier">norm</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span> <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">norm</span>.<span class="ruby-identifier">to_a</span> } <span class="ruby-operator">:</span>
           <span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">doc</span><span class="ruby-operator">|</span> <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">vector</span>.<span class="ruby-identifier">to_a</span> }).<span class="ruby-identifier">transpose</span>
@@ -662,7 +775,7 @@
 
           
           <div class="method-source-code" id="build-21-source">
-            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 149</span>
+            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 163</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">build!</span>(<span class="ruby-identifier">docs</span>, <span class="ruby-identifier">list</span>, <span class="ruby-identifier">options</span>)
   <span class="ruby-constant">Doc</span>.<span class="ruby-identifier">transform</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-value">:transform</span>, <span class="ruby-constant">DEFAULT_TRANSFORM</span>)
 
@@ -706,7 +819,7 @@
 
           
           <div class="method-source-code" id="matrix-source">
-            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 164</span>
+            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 178</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">matrix</span>(<span class="ruby-identifier">d</span> = <span class="ruby-identifier">docs</span>, <span class="ruby-identifier">m</span> = <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">size</span>, <span class="ruby-identifier">n</span> = <span class="ruby-identifier">d</span>.<span class="ruby-identifier">size</span>)
   <span class="ruby-identifier">x</span> = <span class="ruby-constant">GSL</span><span class="ruby-operator">::</span><span class="ruby-constant">Matrix</span>.<span class="ruby-identifier">alloc</span>(<span class="ruby-identifier">m</span>, <span class="ruby-identifier">n</span>)
   <span class="ruby-identifier">d</span>.<span class="ruby-identifier">each_with_index</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span>, <span class="ruby-identifier">j</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">set_col</span>(<span class="ruby-identifier">j</span>, <span class="ruby-identifier">i</span>.<span class="ruby-identifier">transformed_vector</span>(<span class="ruby-identifier">m</span>, <span class="ruby-identifier">n</span>)) }
@@ -750,7 +863,7 @@
 
           
           <div class="method-source-code" id="reduce-source">
-            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 173</span>
+            <pre><span class="ruby-comment"># File lib/lsi4r.rb, line 187</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reduce</span>(<span class="ruby-identifier">s</span>, <span class="ruby-identifier">k</span>, <span class="ruby-identifier">m</span> = <span class="ruby-identifier">s</span>.<span class="ruby-identifier">size</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">k</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">k</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">m</span>
     <span class="ruby-identifier">k</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">s</span>[<span class="ruby-identifier">k</span> = (<span class="ruby-identifier">k</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">m</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">k</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">k</span>).<span class="ruby-identifier">floor</span>, <span class="ruby-identifier">m</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">k</span>] = <span class="ruby-value">0</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">set_zero</span>
@@ -776,7 +889,7 @@
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
-  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 
