@@ -3,7 +3,7 @@
 #                                                                             #
 # lsi4r -- Latent semantic indexing for Ruby                                  #
 #                                                                             #
-# Copyright (C) 2014 Jens Wille                                               #
+# Copyright (C) 2014-2015 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <jens.wille@gmail.com>                                       #
@@ -59,12 +59,11 @@ class Lsi4R
     end
 
     def initialize(key, value, list, freq)
-      @key, @list, @freq, @total = key, list, freq, 1
+      @key, @list, @freq, @total, @map = key, list, freq, 1, hash = Hash.new(0)
 
-      @map = !value.is_a?(Hash) ? build_hash(value, list) :
-        value.inject({}) { |h, (k, v)| h[list[k]] = v; h }
-
-      @map.each_key { |k| freq[k] += 1 }
+      value.is_a?(Hash) ?
+        value.each { |k, v| hash[i = list[k]] = v; freq[i] += 1 } :
+        build_hash(value, list, hash).each_key { |i| freq[i] += 1 }
 
       self.vector = raw_vector
     end
@@ -110,7 +109,7 @@ class Lsi4R
 
     private
 
-    def build_hash(value, list, hash = Hash.new(0))
+    def build_hash(value, list, hash)
       build_enum(value).each { |i| hash[list[i]] += 1 }
       hash
     end
