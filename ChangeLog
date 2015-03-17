@@ -2,7 +2,11 @@
 
 = Revision history for lsi4r
 
-== 0.0.2 [unreleased]
+== 0.0.3 [unreleased]
+
+* Refactored Lsi4R#each_vector and Lsi4R::Doc#initialize.
+
+== 0.0.2 [2014-12-19]
 
 * Fixed Lsi4R::Doc#transform= with regard to non-Symbol/String transforms.
 * Added Lsi4R#each_vector, extracted from Lsi4R#each_term.
