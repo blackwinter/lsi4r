@@ -3,7 +3,7 @@
 #                                                                             #
 # lsi4r -- Latent semantic indexing for Ruby                                  #
 #                                                                             #
-# Copyright (C) 2014 Jens Wille                                               #
+# Copyright (C) 2014-2015 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <jens.wille@gmail.com>                                       #
@@ -83,11 +83,16 @@ class Lsi4R
   def each_vector(key = nil, norm = true)
     return enum_for(:each_vector, key, norm) unless block_given?
 
-    (key ? [self[key]] : docs).each { |doc|
-      if doc && vec = norm ? doc.norm : doc.vector
-        yield doc, vec
-      end
+    block = lambda { |doc|
+      vec = norm ? doc.norm : doc.vector
+      yield doc, vec if vec
     }
+
+    key.nil? ? docs.each(&block) : begin
+      doc = self[key] and block[doc]
+    end
+
+    self
   end
 
   # min:: minimum value to consider
