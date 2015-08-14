@@ -122,6 +122,8 @@ class Lsi4R
     each_term(key, options.merge(norm: true), &block)
   end
 
+  alias_method :each, :each_norm
+
   def related(key, num = 5)
     each_vector(key) { |_, vec|
       tmp, del = block_given? ? yield(vec) :
@@ -152,6 +154,8 @@ class Lsi4R
   def reset
     @hash, @list, @freq, @invlist =
       {}, Hash.new { |h, k| h[k] = h.size }, Hash.new(0), {}
+
+    self
   end
 
   def inspect
