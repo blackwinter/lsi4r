@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class Lsi4R::Doc - lsi4r Application documentation (v0.0.2)</title>
+<title>class Lsi4R::Doc - lsi4r Application documentation (v0.0.3)</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -239,12 +239,11 @@
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File lib/lsi4r/doc.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">list</span>, <span class="ruby-identifier">freq</span>)
-  <span class="ruby-ivar">@key</span>, <span class="ruby-ivar">@list</span>, <span class="ruby-ivar">@freq</span>, <span class="ruby-ivar">@total</span> = <span class="ruby-identifier">key</span>, <span class="ruby-identifier">list</span>, <span class="ruby-identifier">freq</span>, <span class="ruby-value">1</span>
+  <span class="ruby-ivar">@key</span>, <span class="ruby-ivar">@list</span>, <span class="ruby-ivar">@freq</span>, <span class="ruby-ivar">@total</span>, <span class="ruby-ivar">@map</span> = <span class="ruby-identifier">key</span>, <span class="ruby-identifier">list</span>, <span class="ruby-identifier">freq</span>, <span class="ruby-value">1</span>, <span class="ruby-identifier">hash</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)
 
-  <span class="ruby-ivar">@map</span> = <span class="ruby-operator">!</span><span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">build_hash</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">list</span>) <span class="ruby-operator">:</span>
-    <span class="ruby-identifier">value</span>.<span class="ruby-identifier">inject</span>({}) { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, (<span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span>)<span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">list</span>[<span class="ruby-identifier">k</span>]] = <span class="ruby-identifier">v</span>; <span class="ruby-identifier">h</span> }
-
-  <span class="ruby-ivar">@map</span>.<span class="ruby-identifier">each_key</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">freq</span>[<span class="ruby-identifier">k</span>] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> }
+  <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>) <span class="ruby-operator">?</span>
+    <span class="ruby-identifier">value</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">i</span> = <span class="ruby-identifier">list</span>[<span class="ruby-identifier">k</span>]] = <span class="ruby-identifier">v</span>; <span class="ruby-identifier">freq</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> } <span class="ruby-operator">:</span>
+    <span class="ruby-identifier">build_hash</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">list</span>, <span class="ruby-identifier">hash</span>).<span class="ruby-identifier">each_key</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">freq</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> }
 
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">vector</span> = <span class="ruby-identifier">raw_vector</span>
 <span class="ruby-keyword">end</span></pre>
@@ -330,7 +329,7 @@
 
           
           <div class="method-source-code" id="foat_vector-source">
-            <pre><span class="ruby-comment"># File lib/lsi4r/doc.rb, line 85</span>
+            <pre><span class="ruby-comment"># File lib/lsi4r/doc.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">foat_vector</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
   <span class="ruby-identifier">vec</span>, <span class="ruby-identifier">q</span> = <span class="ruby-identifier">raw_vector</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>), <span class="ruby-value">0</span>
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">vec</span> <span class="ruby-keyword">unless</span> (<span class="ruby-identifier">s</span> = <span class="ruby-identifier">vec</span>.<span class="ruby-identifier">sum</span>) <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
@@ -367,7 +366,7 @@
 
           
           <div class="method-source-code" id="inspect-source">
-            <pre><span class="ruby-comment"># File lib/lsi4r/doc.rb, line 107</span>
+            <pre><span class="ruby-comment"># File lib/lsi4r/doc.rb, line 106</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">inspect</span>
   <span class="ruby-string">&#39;%s@%p/%d&#39;</span> <span class="ruby-operator">%</span> [<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>, <span class="ruby-identifier">key</span>, <span class="ruby-identifier">size</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -400,7 +399,7 @@
 
           
           <div class="method-source-code" id="raw_vector-source">
-            <pre><span class="ruby-comment"># File lib/lsi4r/doc.rb, line 78</span>
+            <pre><span class="ruby-comment"># File lib/lsi4r/doc.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">raw_vector</span>(<span class="ruby-identifier">size</span> = <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">size</span>, <span class="ruby-operator">*</span>)
   <span class="ruby-identifier">vec</span> = <span class="ruby-constant">GSL</span><span class="ruby-operator">::</span><span class="ruby-constant">Vector</span>.<span class="ruby-identifier">calloc</span>(<span class="ruby-identifier">size</span>)
   <span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">vec</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">v</span> }
@@ -435,7 +434,7 @@
 
           
           <div class="method-source-code" id="tfidf_vector-source">
-            <pre><span class="ruby-comment"># File lib/lsi4r/doc.rb, line 93</span>
+            <pre><span class="ruby-comment"># File lib/lsi4r/doc.rb, line 92</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">tfidf_vector</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
   <span class="ruby-identifier">vec</span>, <span class="ruby-identifier">f</span> = <span class="ruby-identifier">raw_vector</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>), <span class="ruby-ivar">@freq</span>
   <span class="ruby-identifier">s</span>, <span class="ruby-identifier">d</span> = <span class="ruby-identifier">vec</span>.<span class="ruby-identifier">sum</span>, <span class="ruby-ivar">@total</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-value">1</span>, <span class="ruby-ivar">@total</span>).<span class="ruby-identifier">to_f</span>
@@ -472,7 +471,7 @@
 
           
           <div class="method-source-code" id="vector-3D-source">
-            <pre><span class="ruby-comment"># File lib/lsi4r/doc.rb, line 103</span>
+            <pre><span class="ruby-comment"># File lib/lsi4r/doc.rb, line 102</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vector=</span>(<span class="ruby-identifier">vec</span>)
   <span class="ruby-ivar">@vector</span>, <span class="ruby-ivar">@norm</span> = <span class="ruby-identifier">vec</span>, <span class="ruby-identifier">vec</span>.<span class="ruby-identifier">normalize</span>
 <span class="ruby-keyword">end</span></pre>
@@ -513,7 +512,7 @@
 
           
           <div class="method-source-code" id="build_enum-source">
-            <pre><span class="ruby-comment"># File lib/lsi4r/doc.rb, line 118</span>
+            <pre><span class="ruby-comment"># File lib/lsi4r/doc.rb, line 117</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">build_enum</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">re</span> = <span class="ruby-constant">TOKEN_RE</span>)
   <span class="ruby-identifier">value</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">read</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:read</span>)
   <span class="ruby-identifier">value</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">split</span>(<span class="ruby-identifier">re</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:split</span>)
@@ -533,7 +532,7 @@
         
         <div class="method-heading">
           <span class="method-name">build_hash</span><span
-            class="method-args">(value, list, hash = Hash.new(0))</span>
+            class="method-args">(value, list, hash)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -548,8 +547,8 @@
 
           
           <div class="method-source-code" id="build_hash-source">
-            <pre><span class="ruby-comment"># File lib/lsi4r/doc.rb, line 113</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">build_hash</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">list</span>, <span class="ruby-identifier">hash</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>))
+            <pre><span class="ruby-comment"># File lib/lsi4r/doc.rb, line 112</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">build_hash</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">list</span>, <span class="ruby-identifier">hash</span>)
   <span class="ruby-identifier">build_enum</span>(<span class="ruby-identifier">value</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">list</span>[<span class="ruby-identifier">i</span>]] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> }
   <span class="ruby-identifier">hash</span>
 <span class="ruby-keyword">end</span></pre>
