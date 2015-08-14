@@ -2,7 +2,7 @@
 
 == VERSION
 
-This documentation refers to lsi4r version 0.0.2
+This documentation refers to lsi4r version 0.0.3
 
 
 == DESCRIPTION
@@ -27,7 +27,7 @@ Travis CI::     https://travis-ci.org/blackwinter/lsi4r
 
 == LICENSE AND COPYRIGHT
 
-Copyright (C) 2014 Jens Wille
+Copyright (C) 2014-2015 Jens Wille
 
 lsi4r is free software: you can redistribute it and/or modify it
 under the terms of the GNU Affero General Public License as published by
