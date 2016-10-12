@@ -122,8 +122,6 @@ class Lsi4R
     each_term(key, options.merge(norm: true), &block)
   end
 
-  alias_method :each, :each_norm
-
   def related(key, num = 5, norm = true)
     each_vector(key, norm) { |_, vec|
       tmp, del = block_given? ? yield(vec) :
