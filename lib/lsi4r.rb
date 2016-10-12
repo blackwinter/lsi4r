@@ -3,7 +3,7 @@
 #                                                                             #
 # lsi4r -- Latent semantic indexing for Ruby                                  #
 #                                                                             #
-# Copyright (C) 2014-2015 Jens Wille                                          #
+# Copyright (C) 2014-2016 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <jens.wille@gmail.com>                                       #
@@ -124,8 +124,8 @@ class Lsi4R
 
   alias_method :each, :each_norm
 
-  def related(key, num = 5)
-    each_vector(key) { |_, vec|
+  def related(key, num = 5, norm = true)
+    each_vector(key, norm) { |_, vec|
       tmp, del = block_given? ? yield(vec) :
         [sort_by { |_, v| -vec * v.norm.col }.map! { |k,| k }]
 
